@@ -1,19 +1,30 @@
 import { StyleSheet, Text, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native'
 import { Link } from 'expo-router'
-import { useState } from 'react'
+import {useContext, useState} from 'react'
 
 import ThemedView from '../../components/ThemeView'
 import ThemedText from '../../components/ThemedText'
 import Spacer from '../../components/Spacer'
 import ThemedButton from '../../components/ThemedButton'
 import ThemedTextInput from "../../components/ThemedTextInput"
+import {useUser} from "../../hooks/useUser";
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const { login } = useUser()
+
     const handleSubmit = async () => {
-        console.log('login form submitted: ', email, password)
+        try {
+
+
+            await register(email, password)
+
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
     return (
